@@ -79,17 +79,21 @@ fun AppDrawer(name: String) {
                 pm.getApplicationInfo(it.activityInfo.packageName, PackageManager.GET_META_DATA)
             val text = pm.getApplicationLabel(appInfo).toString()
             val appIcon = pm.getApplicationIcon(appInfo)
-            Surface(
-//                 = Alignment.Center,
+            Box( contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier
                     .background(
-                        color = Color.Yellow,
+                        color = Color.Transparent,
                         shape = RoundedCornerShape(corner = CornerSize(8.dp))
                     )
                     .padding(8.dp)
             ) {
-                Image(bitmap = appIcon.toBitmap().asImageBitmap(), "Icon")
-                Text(text = text, style = MaterialTheme.typography.subtitle1, maxLines = 1)
+                Image(bitmap = appIcon.toBitmap().asImageBitmap(), "Icon", Modifier.padding(4.dp))
+                Text(
+                    text = text,
+                    style = MaterialTheme.typography.subtitle1,
+                    maxLines = 1,
+                    modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.BottomCenter)
+                )
             }
         }
     }
